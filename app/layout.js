@@ -1,9 +1,9 @@
-import { Inter } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import Header from './_components/Header';
 import Footer from "./_components/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Outfit({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",
