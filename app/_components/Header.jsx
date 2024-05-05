@@ -1,7 +1,13 @@
+"use client"
+import { SignInButton, SignedIn, SignedOut, UserButton, useUser } from '@clerk/nextjs'
 import Image from 'next/image'
 import React from 'react'
+import { usePathname } from 'next/navigation';
+import { ShoppingCart } from 'lucide-react';
 
 function Header() {
+  const path = usePathname();
+  if(path != '/sign-in' &&  path != '/sign-up' ){ 
   return (<header className="bg-white">
   <div className="mx-auto flex h-16 max-w-screen-xl shadow-sm
    items-center gap-8 px-4 sm:px-6 lg:px-8">
@@ -33,22 +39,16 @@ function Header() {
       </nav>
 
       <div className="flex items-center gap-4">
-        <div className="sm:flex sm:gap-4">
-          <a
-            className="block rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-white transition hover:bg-blue-600"
-            href="#"
-          >
-            Login
-          </a>
-
-          <a
-            className="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-primary transition hover:text-blue-600/75 sm:block"
-            href="#"
-          >
-            Register
-          </a>
-        </div>
-
+        <h2 className='flex gap-1 cursor-pointer'>
+        <ShoppingCart className='text-primary'/> (0)
+        
+      <SignedOut>
+              <SignInButton  className =" bg-gray-200 text-primary border-separate rounded-lg px-2"/>
+        </SignedOut>
+        <SignedIn>
+              <UserButton className =" bg-primary text-gray-200 border-separate rounded-lg px-2"/>
+        </SignedIn>
+       </h2>
         <button
           className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden"
         >
@@ -69,6 +69,7 @@ function Header() {
   </div>
 </header>
   )
+}
 }
 
 export default Header

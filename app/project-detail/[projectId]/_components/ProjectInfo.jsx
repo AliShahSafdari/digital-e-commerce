@@ -1,12 +1,29 @@
+import { useUser } from '@clerk/nextjs';
 import { BadgeCheck, ShoppingCart,OctagonAlert } from 'lucide-react'
+import { useRouter } from 'next/navigation';
 import React from 'react'
 
 function ProjectInfo({product}) {
-  console.log(product)
+  const {user} = useUser();
+  const router = useRouter();
+  // use to add project/product into card
+  const onAddToCartClick = ()=>{
+      if(!user){
+        router.push('/sign-in');
+        return;
+      }
+      else{
+        // logic to add  to cart
+        
+      }
+  }
   const instantDelivery = product?.attributes?.instantDelivery;
   return (
     <div>
-        <h2 className=' text-[20px]'>{product?.attributes?.title}
+      {product?
+      <div>
+        <h2 className=' text-[20px]'>
+          {product?.attributes?.title}
         </h2>
         <h2 className=' text-[15px] text-gray-400'>
           {product?.attributes?.category}
@@ -22,11 +39,18 @@ function ProjectInfo({product}) {
           $ {product?.attributes?.pricing}
         </h2>
 
-        <button className='flex gap-2 p-3 px-10 mt-5 bg-primary text-white rounded-lg hover:bg-white  hover:border border-primary hover:text-primary'>
+        <button  className='flex gap-2 p-3 px-10 
+        mt-5 bg-primary text-white rounded-lg
+         hover:bg-white  hover:border border-primary
+          hover:text-primary'  
+          onClick={onAddToCartClick}>
           <ShoppingCart/>
-           Add to Cart</button>
-        
-
+           Add to Cart</button> 
+           </div>
+           :<div>
+           <div className='h-[30px] w-[400px] bg-slate-200 animate-pulse'>
+    </div>
+           </div>}
       </div>
   )
 }

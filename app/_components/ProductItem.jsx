@@ -4,8 +4,6 @@ import Link from 'next/link';
 import React from 'react'
 
 function ProductItem({product}) {
-    console.log(product.attributes.banner.data.attributes.url
-    );
   return (
     <Link href={'/project-detail/'+ product.id}>
       <div  className=' hover:border p-1 rounded-lg border-blue-300'>

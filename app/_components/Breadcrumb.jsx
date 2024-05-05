@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Breadcrumb() {
-  return (
+function Breadcrumb({path}) {
+  return path&&(
 <nav aria-label="Breadcrumb">
   <ol className="flex items-center gap-1 text-sm text-gray-600">
     <li>
-      <a href="#" className="block transition hover:text-gray-700">
+      <a href="/" className="block transition hover:text-gray-700">
         <span className="sr-only"> Home </span>
 
         <svg
@@ -41,10 +41,10 @@ function Breadcrumb() {
     </li>
 
     <li>
-      <a href="#" className="block transition hover:text-gray-700"> Shirts </a>
+      <a href="" className="block transition hover:text-gray-700"> {path?.split('/')[1]} </a>
     </li>
 
-    <li className="rtl:rotate-180">
+   {path.split('/')[2] && <li className="rtl:rotate-180">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-4 w-4"
@@ -58,9 +58,9 @@ function Breadcrumb() {
         />
       </svg>
     </li>
-
+}
     <li>
-      <a href="#" className="block transition hover:text-gray-700"> Plain Tee </a>
+      <a href="" className="block transition hover:text-gray-700"> {path?.split('/')[2]} </a>
     </li>
   </ol>
 </nav>
