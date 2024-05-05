@@ -12,7 +12,6 @@ function ProjectBanner({product}) {
     className='rounded-t-lg h-[170px] object-cover'/>
     
     :<div className='h-[350px] w-[350px] bg-slate-200 animate-pulse'>
-
     </div>}
     </div>
   )
