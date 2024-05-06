@@ -1,10 +1,10 @@
 "use client"
-import Breadcrumb from '@/app/_components/Breadcrumb';
-import GlobalApi from '@/app/_utils/GlobalApi'
+import Breadcrumb from '../../_components/Breadcrumb';
+import GlobalApi from '../../_utils/GlobalApi'
 import React, { useEffect, useState } from 'react'
 import ProjectBanner from './_components/ProjectBanner';
 import ProjectInfo from './_components/ProjectInfo';
-import ProductList from '@/app/_components/ProductList';
+import ProductList from '../../_components/ProductList';
 import { usePathname } from 'next/navigation';
 
 function ProgectDetails({params}) {
@@ -31,7 +31,7 @@ function ProgectDetails({params}) {
 
     return (
     <div className='p-5 py-12 px-10 md:px-28'>
-        <Breadcrumb path = {path}/>
+        <Breadcrumb path={path} />
         <div className='grid grid-cols-1 sm:grid-cols-2 mt-10 gap-5 sm:gap-10 justify-evenly'>
             <ProjectBanner product = {productDetail} />
             <ProjectInfo product = {productDetail} />
