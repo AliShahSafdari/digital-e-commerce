@@ -1,11 +1,15 @@
 import { useUser } from '@clerk/nextjs';
 import { BadgeCheck, ShoppingCart,OctagonAlert } from 'lucide-react'
 import { useRouter } from 'next/navigation';
-import React from 'react'
+import React, { useContext } from 'react'
+import GlobalApi from '../../../_utils/GlobalApi';
+import { CartContext } from '../../../_context/CartContext';
 
 function ProjectInfo({product}) {
   const {user} = useUser();
   const router = useRouter();
+  const {cart, setCart} = useContext(CartContext);
+
   // use to add project/product into card
   const onAddToCartClick = ()=>{
       if(!user){
@@ -14,7 +18,24 @@ function ProjectInfo({product}) {
       }
       else{
         // logic to add  to cart
-        
+    const data={
+          data:{
+            userName: user.fullName,
+            email: user.primaryEmailAddress.emailAddress,
+            products:product?.id
+          }
+        }
+        GlobalApi.addToCard(data).then(resp=>{
+          console.log("Add to Cart : ", resp);
+          
+          resp&&setCart(cart=>[...cart, 
+            {id:resp?.data?.id,
+              product:product
+            }
+            ]);
+        }, (error)=>{
+          console.log("Error : ", error);
+        })
       }
   }
   const instantDelivery = product?.attributes?.instantDelivery;

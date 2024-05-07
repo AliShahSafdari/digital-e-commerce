@@ -16,7 +16,7 @@ function ProductItem({product}) {
          <div className='flex justify-between items-center bg-gray-50 p-3 rounded-b-lg'>      
         <div className=''>
             <h2 className='text-[12px] font-medium line-clamp-1'> {product.attributes.title}</h2>
-            <h2 className=' text-[10px] text-grey-400 flex gap-2'> <SquareChevronRight className='h-4 w-4' />{product.attributes.category}</h2>
+            <h2 className=' text-[10px] text-grey-400 flex gap-2'> <SquareChevronRight className='h-4 w-4' />{product.attributes.Category}</h2>
          </div>
          <h2 className=' font-bold'>${product.attributes?.pricing}</h2>
          </div>
